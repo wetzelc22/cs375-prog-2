@@ -10,7 +10,7 @@ int main(int argc, char ** argv){
 	//assert(argc == 3);
 	std::ifstream reader(argv[1]);
 	std::string line;
-	while(getline(argv[1], line)){
+	while(std::getline(reader, line)){
 		std::stringstream linestream(line);
 		std::string value;
 
