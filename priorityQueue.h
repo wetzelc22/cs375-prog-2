@@ -7,7 +7,6 @@
 class PriorityQueue{
 private:
 	std::vector<Node *> queue;
-
 public:
 	PriorityQueue();
 	void Heapify(std::vector<Node *>);
