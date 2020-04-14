@@ -15,8 +15,7 @@ struct item{
 bool compareFrac(item i1, item i2){
 	double val1 = (double)i1.profit/i1.weight;
 	double val2 = (double)i2.profit/i2.weight;
-
-	return val2 > val1;
+	return val2 <  val1;
 }
 
 int main(int argc, char ** argv){
@@ -37,9 +36,10 @@ int main(int argc, char ** argv){
 			n_items = std::stoi(value);
 			getline(linestream,value,',');
 			capacity = std::stoi(value);
+			track++;
 		}else{
 			int w, p;
-			std::getline(linestream, value, ',')
+			std::getline(linestream, value, ',');
 			w = std::stoi(value);
 			std::getline(linestream,value, ',');
 			p = std::stoi(value);
@@ -50,7 +50,8 @@ int main(int argc, char ** argv){
 
 		}
 	}
-
+	
+	//items vector sorted from largest p/w val to smallest
 	std::sort(items.begin(), items.end(), compareFrac);
 
 
