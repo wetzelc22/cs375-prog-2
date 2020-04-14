@@ -11,6 +11,26 @@ struct item{
 	int profit;
 };
 
+double bound(unsigned int i, std::vector<item> items, Node * n, C, n_items){
+	double bound = n->profit;
+	int weight = n->weight;
+	std::vector<double> x(n_items, 0.0);
+	while(weight < C && i <= n_items){
+		if(weight + items[i].weight <= C){
+			x[i] = 1.0;
+			weight += items[i].weight;
+			bound += items[i].profit;
+		}else{
+			x[i] = (C-weight)/items[i].weight;
+			weight = C;
+			bound += item[i].profit * x[i];
+		}
+		i++;
+	}
+	return bound;
+
+}
+
 //To compare items based on p/w value
 bool compareFrac(item i1, item i2){
 	double val1 = (double)i1.profit/i1.weight;
