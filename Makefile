@@ -10,7 +10,10 @@ BestFirstSearch: BestFirstSearch.o PriorityQueue.o
 	g++ BestFirstSearch.o PriorityQueue.o -o BestFirstSearch
 
 run: BestFirstSearch
-	./BestFirstSearch input.txt
+	./BestFirstSearch input.txt output.txt
+
+valgrind: BestFirstSearch
+	valgrind ./BestFirstSearch input.txt output.txt
 
 clean:
 	rm *.o BestFirstSearch

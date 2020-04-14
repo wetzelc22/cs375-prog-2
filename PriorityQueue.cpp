@@ -1,6 +1,11 @@
 #include "PriorityQueue.h"
 #include <iostream>
 
+PriorityQueue::PriorityQueue(){
+	
+}
+
+//used to actually heapify the vector, calls siftdown until whole array has been heapified
 void PriorityQueue::Heapify(std::vector<Node *> before){
 	for(int i = (before.size()-2)/2; i >= 0; i--){
 		siftdown(before, i);
@@ -8,6 +13,7 @@ void PriorityQueue::Heapify(std::vector<Node *> before){
 	queue = before;
 }
 
+//used to move value through tree
 void PriorityQueue::siftdown(std::vector<Node *> &vec, int ind){
 	if(ind < 0 || (ind >= (int)vec.size())) return;
 	while(left(ind, vec) != -1){
@@ -24,6 +30,7 @@ void PriorityQueue::siftdown(std::vector<Node *> &vec, int ind){
 	}
 }
 
+//find left child index
 int PriorityQueue::left(unsigned int par, std::vector<Node *> vec){
 	if(2*par + 1 >= vec.size()){
 		return -1;
@@ -31,6 +38,7 @@ int PriorityQueue::left(unsigned int par, std::vector<Node *> vec){
 	return 2*par + 1;
 }
 
+//find right child index
 int PriorityQueue::right(unsigned int par, std::vector<Node *> vec){
 	if(2*par + 2 >= vec.size()){
 		return -1;
@@ -38,6 +46,7 @@ int PriorityQueue::right(unsigned int par, std::vector<Node *> vec){
 	return 2*par + 2;
 }
 
+//add element to queue
 void PriorityQueue::addElement(Node * e){
 	bool placed = false;
 	for(unsigned int i = 0; i < queue.size(); i++){
@@ -52,16 +61,14 @@ void PriorityQueue::addElement(Node * e){
 	}
 }
 
-double PriorityQueue::peek(){
-	return queue[0]->bound;
-}
-
+//pops top value of queue and returns it
 Node * PriorityQueue::getPriority(){
 	Node * temp = queue[0];
 	queue.erase(queue.begin()+0);
 	Heapify(queue);
 	return temp;
 }
+//see if queue empty
 bool PriorityQueue::empty(){
 	return queue.size() == 0 ;
 }

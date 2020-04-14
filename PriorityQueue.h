@@ -17,7 +17,6 @@ public:
 	Node * getPriority();
 	bool empty();
 	unsigned long size(){return queue.size();};
-	double peek();
 };
 
 #endif
