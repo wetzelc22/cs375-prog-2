@@ -77,6 +77,64 @@ int main(int argc, char ** argv){
 	std::sort(items.begin(), items.end(), compareFrac);
 
 
+	//algorithm implementation
+
+	std::vector<item> optimal_items;
+	int maxprofit = 0;
+	Node * max = nullptr;
+	int leaves = 0;
+	int nodes_visited = 0;
+	bool NotAdded = true;
+	PriorityQueue q();
+	Node * root = new Node();
+	root->level = -1;
+	root->profit = 0;
+	root->weight = 0;
+	q.addElement(root);
+	while(!q.empty()){
+		nodes_visited++;
+		Node * n = q.getPriority();
+		Node * left = new Node();
+		left->level = n->level + 1;
+
+		//yes child
+
+		left->weight = v.weight + temp[left->level].weight;
+		left->profit = v.profit + temp[left->level].profit;
+		if((left->weight <= capacity) && left->profit > maxprofit)
+			maxprofit = left->profit;
+			max = left;
+		if(bound(left->level, items, left, capacity, n_items) > maxprofit){
+			queue.addElement(left);
+			NotAdded = false;
+		}
+
+		//no child
+
+		Node * right = new Node();
+		right->weight = n->weight;
+		right->profit = n->profit;
+		right->level = n->level + 1;
+
+		if(bound(right->level, items, right, capacity, n_items) > maxprofit){
+			queue.addElement(right);
+			NotAdded = false;
+		}
+
+		//if no children added then it is a leaf so add 1 to leaf count
+
+		if(NotAdded) leaves++;
+
+		NotAdded = true;
+	}
+
+	std::cout << "Max Porfit Expected: " << 90 << std::endl;
+	std::cout << "Max Profit Actual: " << maxprofit << std::endl;
+
+	std::cout << "Num nodes visited: " << nodes_visited << std::endl;
+	std::cout << "Num Leaves visited: " << leaves << std::endl;
+	//deleteNodes(root);
+
 
 
 	return 0;
