@@ -3,7 +3,7 @@
 
 void PriorityQueue::Heapify(std::vector<Node *> before){
 	for(int i = (before.size()-2)/2; i >= 0; i--){
-		siftdown(before, i)
+		siftdown(before, i);
 	}
 	queue = before;
 }
@@ -12,7 +12,7 @@ void PriorityQueue::siftdown(std::vector<Node *> &vec, int ind){
 	if(ind < 0 || (ind >= (int)vec.size())) return;
 	while(left(ind, vec) != -1){
 		int check = left(ind, vec);
-		int val = right(int, vec);
+		int val = right(ind, vec);
 		if(val != -1 && vec[check]->bound < vec[check+1]->bound){
 			check++;
 		}
@@ -48,7 +48,7 @@ void PriorityQueue::addElement(Node * e){
 		}
 	}
 	if(placed == false){
-		pts.push_back(element);
+		queue.push_back(e);
 	}
 }
 

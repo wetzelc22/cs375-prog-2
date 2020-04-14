@@ -10,7 +10,7 @@ private:
 public:
 	PriorityQueue();
 	void Heapify(std::vector<Node *>);
-	void siftdown(std::vector<Node *>);
+	void siftdown(std::vector<Node *>&, int);
 	int left(unsigned int, std::vector<Node *>);
 	int right(unsigned int, std::vector<Node *>);
 	void addElement(Node *);

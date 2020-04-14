@@ -6,7 +6,8 @@
 
 class Node{
 public:
-	Node * left, right;
+	Node * left;
+        Node * right;
 	int level, profit, weight;
 	double bound;
 

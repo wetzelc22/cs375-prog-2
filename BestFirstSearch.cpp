@@ -5,13 +5,15 @@
 #include <cassert>
 #include <sstream>
 #include <algorithm>
+#include "Node.h"
+#include "PriorityQueue.h"
 
 struct item{
 	int weight;
 	int profit;
 };
 
-double bound(unsigned int i, std::vector<item> items, Node * n, C, n_items){
+double bound(unsigned int i, std::vector<item> items, Node * n, int C, int n_items){
 	double bound = n->profit;
 	int weight = n->weight;
 	std::vector<double> x(n_items, 0.0);
@@ -23,7 +25,7 @@ double bound(unsigned int i, std::vector<item> items, Node * n, C, n_items){
 		}else{
 			x[i] = (C-weight)/items[i].weight;
 			weight = C;
-			bound += item[i].profit * x[i];
+			bound += items[i].profit * x[i];
 		}
 		i++;
 	}
