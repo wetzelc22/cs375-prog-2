@@ -99,13 +99,14 @@ int main(int argc, char ** argv){
 
 		//yes child
 
-		left->weight = v.weight + temp[left->level].weight;
-		left->profit = v.profit + temp[left->level].profit;
+		left->weight = n->weight + items[left->level].weight;
+		left->profit = n->profit + items[left->level].profit;
 		if((left->weight <= capacity) && left->profit > maxprofit)
 			maxprofit = left->profit;
 			max = left;
-		if(bound(left->level, items, left, capacity, n_items) > maxprofit){
-			queue.addElement(left);
+		left -> bound = bound(left->level, items, left, capacity, n_items)
+		if(left->bound > maxprofit){
+			q.addElement(left);
 			NotAdded = false;
 		}
 
@@ -115,9 +116,9 @@ int main(int argc, char ** argv){
 		right->weight = n->weight;
 		right->profit = n->profit;
 		right->level = n->level + 1;
-
-		if(bound(right->level, items, right, capacity, n_items) > maxprofit){
-			queue.addElement(right);
+		right->bound = bound(right->level, items, right, capacity, n_items)
+		if(right->bound > maxprofit){
+			q.addElement(right);
 			NotAdded = false;
 		}
 
